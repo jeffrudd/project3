@@ -70,22 +70,32 @@ $(document).ready(function () {
 
         'A presto card is declined',
 
-        'someone is sleeping'
+        'someone is sleeping',
+
+        'someone sitting on outside of a double seat'
 
     ];
 
     ttcArray = shuffle(ttcArray);
 
+    // let hackerYouArray = [
+
+    // ]
+    
     for (let i = 6; i <= 30; i++) {
         const spaceAssignment = ttcArray[i-6];
         $("ul li:nth-child("+ i + ")").text(spaceAssignment);
+      if (i == 30) {
+        $(".gridItem18").text("Free Space");
+      }
     }
+    
     //Logic Statements 
     
     $("li").click(function() {
     const Button = $(this).attr("class");
 
-    if (Button.includes("gridItem18") === false) {
+    if (Button.includes("uncheckable") === false) {
         $(this).toggleClass("checked");
     }
       if (

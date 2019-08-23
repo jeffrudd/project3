@@ -181,7 +181,12 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 body {
   font-family: sans-serif;
-  font-size: 28px;
+  font-size: 25px;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .gridItem {
@@ -196,13 +201,19 @@ body {
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: 150px 150px 150px 150px 150px 150px;
-      grid-template-rows: 150px 150px 150px 150px 150px 150px;
+  -ms-grid-rows: 125px 125px 125px 125px 125px 125px;
+      grid-template-rows: 125px 125px 125px 125px 125px 125px;
   grid-gap: 30px;
 }
 
 ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  max-width: 225px;
 }
 
 .checked {
@@ -216,17 +227,12 @@ ul {
   .container {
     -ms-grid-rows: 75px 75px 75px 75px 75px 75px;
         grid-template-rows: 75px 75px 75px 75px 75px 75px;
-    grid-gap: 15px;
+    grid-gap: 0px;
   }
 }
 
 @media (max-width: 490px) {
   body {
-    font-size: 8px;
-  }
-  .container {
-    -ms-grid-rows: 40px 40px 40px 40px 40px 40px;
-        grid-template-rows: 40px 40px 40px 40px 40px 40px;
-    grid-gap: 5px;
+    font-size: 10px;
   }
 }
