@@ -22,66 +22,111 @@ $(document).ready(function () {
 
     let ttcArray = [
         
-        'friendly driver',
+      'Friendly driver',
 
-        'wet spot on seat',
+      'Angry driver',
 
-        'person sitting too close',
+      'Wet spot on seat',
 
-        'presto reader not working',
+      'Person sitting too close',
 
-        'fare inspector on board',
+      'Presto reader not working',
 
-        'had a convo with a rando passenger',
+      'Fare inspector on board',
 
-        'person loud talking on phone',
+      'Had a convo with a rando passenger',
 
-        'too many people on board to find a seat',
+      'Person loud talking on phone',
 
-        'man-spreading',
+      'Too many people on board to find a seat',
 
-        'someone singing',
+      'Man-spreading',
 
-        'being hit by a backpack',
+      'Someone singing',
 
-        'driver does not stop at stop',
+      'Got hit by a backpack',
 
-        'not being able to fit on board',
+      'Driver does not stop at stop',
 
-        'someone is playing music too loud',
+      'Someone is grooming themselves',
 
-        'backpack taking up a seat',
+      'Someone is playing music too loud',
 
-        'emergency button gets pressed',
+      'Backpack taking up a seat',
 
-        'unexpected detour/delay',
+      'Emergency button gets pressed',
 
-        'someone eating something that smells',
+      'Unexpected detour/delay',
 
-        'witness a dispute',
+      'Someone eating something that smells',
 
-        'see a cute dog',
+      'Witness a dispute',
 
-        'get a seat with nobody beside you',
+      'See a cute dog',
 
-        'someone sitting or standing too close',
+      'Get a seat with nobody beside you',
 
-        'you have to watch a ttc vehicle go past',
+      'Someone sitting or standing too close',
 
-        'A presto card is declined',
+      'You have to watch a TTC vehicle go past',
 
-        'someone is sleeping',
+      'A presto card is declined',
 
-        'someone sitting on outside of a double seat'
+      'Someone is sleeping',
+
+      'Someone sitting on outside of a double seat'
 
     ];
 
     ttcArray = shuffle(ttcArray);
 
-    // let hackerYouArray = [
+    let hackerYouArray = [
 
-    // ]
-    
+      'Intro cat video',
+
+      'Intro dog video',
+
+      'safiIsGreat used as a variable',
+
+      'Something about chocolate',
+
+      'Something about coffee',
+
+      'Story about travelling',
+
+      '"So and so, we\'re going to brunch (mitzi\'s)!"',
+
+      '"call a wizard"',
+
+      '"was that a hand I saw over there?"',
+
+      '"can I get a show of..."',
+
+      "safiIsGreat used as a function",
+
+      "Awkward silence",
+
+      '"it\'s like Greek Hell"',
+
+      "Story about father",
+
+      "Story about Simon",
+
+      '"it\'s the greatest thing ever!"',
+
+      '"remember I told you..."',
+
+      "console.log(safiIsGreat)",
+
+
+
+    ]
+
+  $("select").change(function () {
+      const themeChoice = $('option:selected').attr("value");
+      console.log(themeChoice);
+  });
+
     for (let i = 6; i <= 30; i++) {
         const spaceAssignment = ttcArray[i-6];
         $("ul li:nth-child("+ i + ")").text(spaceAssignment);

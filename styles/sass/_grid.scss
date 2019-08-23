@@ -1,3 +1,7 @@
+$primaryColor:#DB2727;
+$accentColor:  #4B4F50;
+$secondaryColor: #ffffff;
+
 body {
     font-family: sans-serif;
     font-size: 25px;
@@ -10,9 +14,8 @@ body {
 
 .gridItem {
     text-align: center;
-    color: white;
-    border: 3px solid #791313;
-    background: #023f58;
+    border: 4px solid $primaryColor;
+    background: $secondaryColor;
 }
 
 .container {
@@ -33,8 +36,20 @@ li {
 }
 
 .checked {
-    background: red;
+    background: $accentColor;
+    color: $secondaryColor;
 }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid black;
+  background-image: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png);
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  width: 300px;
+}	
 
 @media (max-width: 920px) {
     body {
@@ -43,13 +58,21 @@ li {
 
     .container {
         grid-template-rows: 75px 75px 75px 75px 75px 75px;
-        grid-gap: 0px;
+        grid-gap: 5px;
+    }
+
+    .gridItem {
+        border: 3px solid $primaryColor;
     }
 }
 
 @media (max-width: 490px) {
     body {
         font-size: 10px;
+    }
+
+    .gridItem {
+        border: 2px solid $primaryColor;
     }
 
     // .container {
