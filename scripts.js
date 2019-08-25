@@ -36,7 +36,7 @@ $(document).ready(function () {
 
       'Had a convo with a rando passenger',
 
-      'Person loud talking on phone',
+      'Person talking loud on phone',
 
       'Too many people on board to find a seat',
 
@@ -74,7 +74,9 @@ $(document).ready(function () {
 
       'Someone is sleeping',
 
-      'Someone sitting on outside of a double seat'
+      'Someone sitting on outside of a double seat',
+
+      'Driver slams on the brakes at every stop'
 
     ];
 
@@ -88,15 +90,15 @@ $(document).ready(function () {
 
       'safiIsGreat used as a variable',
 
-      'Something about chocolate',
+      'Mentions something about chocolate',
 
-      'Something about coffee',
+      'Mentions something about coffee',
 
       'Story about travelling',
 
       '"So and so, we\'re going to brunch (mitzi\'s)!"',
 
-      '"call a wizard"',
+      '"Call a wizard!"',
 
       '"was that a hand I saw over there?"',
 
@@ -108,34 +110,117 @@ $(document).ready(function () {
 
       '"it\'s like Greek Hell"',
 
-      "Story about father",
+      "Impersonates father",
 
-      "Story about Simon",
+      "Mentions beards or beardy people",
 
       '"it\'s the greatest thing ever!"',
 
       '"remember I told you..."',
 
-      "console.log(safiIsGreat)",
+      "console.log (safiIsGreat);",
 
+      '"Albert"',
 
+      '*clapping*',
 
-    ]
+      "Whole row wearing hackerYou hoodies",
+
+      "Whole row wearing the same colour",
+
+      "Emphatic tapping on the projector screen",
+
+      "When it's both too hot and cold",
+
+      "When there's a dog in the space",
+
+      '"Anyone here a Carly Rae Jepsen fan?"',
+
+      '"That Colin guy..."',
+
+      '"Suzette, can you put that in slack?"',
+
+      "Class answers a question together",
+
+      "Gets someone's name wrong",
+
+      "Miss break time by more than 1 minute",
+
+      'Room is too cold',
+
+      'Room is too hot',
+
+      '*laughter*',
+      
+      '"Do you say jif or gif?"',
+
+      'When all the outlets are full',
+
+      '"When I was in bootcamp..."',
+
+      "Types a string in all caps",
+
+      "Eating chocolate while speaking",
+
+      "Takes a sip of coffee mid-sentence"
+
+    ];
+
+  hackerYouArray = shuffle(hackerYouArray);
+
+  let arrayChoice = ttcArray;
+
+//Theme Selection Logic
 
   $("select").change(function () {
       const themeChoice = $('option:selected').attr("value");
       console.log(themeChoice);
+
+      if (themeChoice === "ttcOption") {
+        arrayChoice = ttcArray;
+        for (let i = 6; i <= 30; i++) {
+          const spaceAssignment = arrayChoice[i - 6];
+          $("ul li:nth-child(" + i + ")").text(spaceAssignment);
+          if (i == 30) {
+            $(".gridItem18").text("Free Space");
+            $("section").css({
+              "background-image" : "url(http://www.ttc.ca/images/ttc-main-logo.gif)"
+            });
+            $(".gridItem").css({ "opacity": "1" });
+          }
+        }
+      }
+      if (themeChoice === "hackerYouOption") {
+        arrayChoice = hackerYouArray;
+        for (let i = 6; i <= 30; i++) {
+          const spaceAssignment = arrayChoice[i - 6];
+          $("ul li:nth-child(" + i + ")").text(spaceAssignment);
+          if (i == 30) {
+            $(".gridItem18").text("Free Space");
+            $(".gridItem18").css({
+              "background-image": "none"
+            });
+            $(".gridItem").css({"opacity" : "0.95"});
+            $("section").css({
+              "background-image": "url(https://images.ctfassets.net/kjeq3om28nk5/29EdaLLFGICqU4OwMOUumE/cf9e89ee7dac5795db6730681157d350/2019-Winter_Bootcamp-Asaf-Gerchak-1.jpg?w=800&q=50)"});
+          }
+        }
+      }
   });
 
     for (let i = 6; i <= 30; i++) {
-        const spaceAssignment = ttcArray[i-6];
+        const spaceAssignment = arrayChoice[i-6];
         $("ul li:nth-child("+ i + ")").text(spaceAssignment);
       if (i == 30) {
         $(".gridItem18").text("Free Space");
       }
     }
+
+    //reset the select input on refresh
+    $('select').prop('selectedIndex', 0);
     
-    //Logic Statements 
+
+    //Game Win Logic Statements 
     
     $("li").click(function() {
     const Button = $(this).attr("class");
@@ -150,7 +235,15 @@ $(document).ready(function () {
         $(".gridItem9").hasClass("checked") &&
         $(".gridItem10").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem6, .gridItem7, .gridItem8, .gridItem9, .gridItem10, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)"});
+        $(".gridItem6").css({"animation" : "snow1 10s linear infinite"});
+        $(".gridItem7").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem8").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem9").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem10").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+        
+
       } else if (
         $(".gridItem11").hasClass("checked") &&
         $(".gridItem12").hasClass("checked") &&
@@ -158,7 +251,14 @@ $(document).ready(function () {
         $(".gridItem14").hasClass("checked") &&
         $(".gridItem15").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem11, .gridItem12, .gridItem13, .gridItem14, .gridItem15, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem11").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem12").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem13").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem14").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem15").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem16").hasClass("checked") &&
         $(".gridItem17").hasClass("checked") &&
@@ -166,7 +266,14 @@ $(document).ready(function () {
         $(".gridItem19").hasClass("checked") &&
         $(".gridItem20").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem16, .gridItem17, .gridItem18, .gridItem19, .gridItem20, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem16").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem17").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem18").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem19").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem20").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem21").hasClass("checked") &&
         $(".gridItem22").hasClass("checked") &&
@@ -174,7 +281,14 @@ $(document).ready(function () {
         $(".gridItem24").hasClass("checked") &&
         $(".gridItem25").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem21, .gridItem22, .gridItem23, .gridItem24, .gridItem25, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem21").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem22").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem23").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem24").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem25").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem26").hasClass("checked") &&
         $(".gridItem27").hasClass("checked") &&
@@ -182,7 +296,14 @@ $(document).ready(function () {
         $(".gridItem29").hasClass("checked") &&
         $(".gridItem30").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem26, .gridItem27, .gridItem28, .gridItem29, .gridItem30, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem26").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem27").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem28").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem29").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem30").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem6").hasClass("checked") &&
         $(".gridItem11").hasClass("checked") &&
@@ -190,7 +311,14 @@ $(document).ready(function () {
         $(".gridItem21").hasClass("checked") &&
         $(".gridItem26").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem6, .gridItem11, .gridItem16, .gridItem21, .gridItem26, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem6").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem11").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem16").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem21").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem26").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem7").hasClass("checked") &&
         $(".gridItem12").hasClass("checked") &&
@@ -198,7 +326,14 @@ $(document).ready(function () {
         $(".gridItem22").hasClass("checked") &&
         $(".gridItem27").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem7, .gridItem12, .gridItem17, .gridItem22, .gridItem27, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem7").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem12").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem17").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem22").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem27").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem8").hasClass("checked") &&
         $(".gridItem13").hasClass("checked") &&
@@ -206,7 +341,14 @@ $(document).ready(function () {
         $(".gridItem23").hasClass("checked") &&
         $(".gridItem28").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem8, .gridItem13, .gridItem18, .gridItem23, .gridItem28, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem8").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem13").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem18").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem23").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem28").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem9").hasClass("checked") &&
         $(".gridItem14").hasClass("checked") &&
@@ -214,7 +356,14 @@ $(document).ready(function () {
         $(".gridItem24").hasClass("checked") &&
         $(".gridItem29").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem9, .gridItem14, .gridItem19, .gridItem24, .gridItem29, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem9").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem14").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem19").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem24").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem29").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image" : "none" });
+
       } else if (
         $(".gridItem10").hasClass("checked") &&
         $(".gridItem15").hasClass("checked") &&
@@ -222,7 +371,14 @@ $(document).ready(function () {
         $(".gridItem25").hasClass("checked") &&
         $(".gridItem30").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem10, .gridItem15, .gridItem20, .gridItem25, .gridItem30, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem10").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem15").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem20").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem25").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem30").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem6").hasClass("checked") &&
         $(".gridItem12").hasClass("checked") &&
@@ -230,7 +386,14 @@ $(document).ready(function () {
         $(".gridItem24").hasClass("checked") &&
         $(".gridItem30").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem6, .gridItem12, .gridItem18, .gridItem24, .gridItem30, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem6").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem12").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem18").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem24").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem30").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
+
       } else if (
         $(".gridItem10").hasClass("checked") &&
         $(".gridItem14").hasClass("checked") &&
@@ -238,7 +401,13 @@ $(document).ready(function () {
         $(".gridItem22").hasClass("checked") &&
         $(".gridItem26").hasClass("checked")
       ) {
-        console.log("You WON");
+        $(".gridItem10, .gridItem14, .gridItem18, .gridItem22, .gridItem26, .resetButton").css({ "position": "absolute", "background-image": "linear-gradient(red, yellow, green)", "transform": "scale(2)" });
+        $(".gridItem10").css({ "animation": "snow1 10s linear infinite" });
+        $(".gridItem14").css({ "animation": "snow2 10s linear infinite" });
+        $(".gridItem18").css({ "animation": "snow3 10s linear infinite" });
+        $(".gridItem22").css({ "animation": "snow4 10s linear infinite" });
+        $(".gridItem26").css({ "animation": "snow5 10s linear infinite" });
+        $(".resetButton").css({ "animation": "snow6 10s linear infinite", "background-image": "none"  });
       }
     });
 
