@@ -36,7 +36,8 @@ h2 {
 ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 20px 0 0 0;
+    
 }
 
 li {
@@ -66,7 +67,8 @@ select {
 .userOptions {
     display: flex;
     justify-content: space-around;
-    margin-top: 25px;
+    margin: 0;
+    padding: 25px 0;
 }
 
 section {
@@ -75,6 +77,16 @@ section {
 
 .themeOption {
     background: $secondaryColor;
+}
+
+footer {
+    background: $accentColor;
+}
+
+footer p {
+    margin: 0;
+    color: $secondaryColor;
+    text-align: center;
 }
 
 @keyframes snow1 {
