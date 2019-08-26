@@ -484,6 +484,15 @@ footer p {
   }
 }
 
+@media (min-height: 945px) {
+  section {
+    height: 95VH;
+  }
+  footer {
+    height: 5VH;
+  }
+}
+
 @media (max-width: 1050px) {
   body {
     font-size: 20px;
